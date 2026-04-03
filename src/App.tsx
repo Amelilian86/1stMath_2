@@ -214,11 +214,6 @@ const Bean = ({ data, isCounted, onClick, index, isScattering }: BeanProps) => {
       <div className="w-8 h-8">
         <BeanFace type={data.expression} />
       </div>
-      {isCounted && index !== undefined && (
-        <div className="absolute -top-2 -right-2 bg-white text-blue-600 font-bold rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm border border-blue-100">
-          {index + 1}
-        </div>
-      )}
     </motion.div>
   );
 };
@@ -682,7 +677,11 @@ export default function App() {
               {/* Counting Area */}
               <div className="flex flex-col items-center gap-4">
                 <div className="flex justify-between w-full px-4">
-                  <h3 className="text-xl font-bold text-blue-600">已数：{countedBeans.length}</h3>
+                  <h3 className="text-xl font-bold text-blue-600">
+                    {countedBeans.length === actualCount 
+                      ? `数完啦！一共：${countedBeans.length} 个` 
+                      : `正在数豆子...`}
+                  </h3>
                   <h3 className="text-xl font-bold text-gray-400">我的估计：{estimate}</h3>
                 </div>
                 <div className="w-full min-h-[400px] bg-white rounded-[3rem] shadow-inner border-4 border-blue-50 p-6 flex flex-wrap content-start gap-3 overflow-y-auto max-h-[600px]">
